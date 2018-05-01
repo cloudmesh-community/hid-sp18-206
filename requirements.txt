@@ -1,0 +1,4 @@
+Flask==1.0.1
+requests>=2.7.0
+pandas==0.22.0
+scikit_learn==0.19.1
