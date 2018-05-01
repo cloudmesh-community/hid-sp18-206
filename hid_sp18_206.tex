@@ -1,0 +1,74 @@
+% status: 0
+% chapter: TBD
+
+\title{IPL Cricket Match Predictor}
+
+
+\author{Krish Hemant Mhatre}
+\affiliation{%
+  \institution{Indiana University}
+  \city{Bloomington} 
+  \state{Indiana} 
+}
+\email{kmhatre@iu.edu}
+
+
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{K. Mhatre}
+
+
+\begin{abstract}
+This paper describes the semester project built for ENGR-E-222.
+\end{abstract}
+
+\keywords{hid-sp18-206, cricket, IPL, Perceptron}
+
+
+\maketitle
+
+\section{Organization}
+
+Krish Hemant Mhatre is sophomore at Indiana University from Mumbai, India. 
+He is an Intelligent Systems Engineering major with concentration in Cyber Physical Systems. 
+Krish is also planning to do a minor in Urban Planning and Community Development. 
+He works as Engineering Tutor at School of Informatics, Computing and Engineering. 
+He is interested in smart environments and robotics.
+ 
+
+\section{Introduction}
+
+The project is a cricket match predictor based on the data of IPL (seasons 2008-2017). The predictor used here is a simple perceptron (not to be mistaken as the Multi-Layered Perceptron).
+
+The predictor is a RESTful service on Docker.
+The dataset used is taken from kaggle.com provided by Mr. Manas Garg as Indian Premier League(Cricket).
+
+
+\section{Code Analysis}
+The code first downloads the data using requests. As it was unable for me to get the data directly from kaggle, I made a dropbox file for it. The program then partitions the data using three arguments - team1, team2 and test season. The data involving two teams is only written down and the data is divided between train and test according to the test season. 
+After partitioning the data, it is simplified to binary to understand the pattern. The following characteristics - Home(1)-Away(0), Toss-Win(1)-TossLose(0) and Toss Decision - bat(1) and field(0) are used in training x array whereas previous results - Win(1) and Loss(0) - are used in training y array.
+Then a perceptron (from sklearn) is used to predict the y array of the test season using the x array of the test season by studying the training data.
+This is a type of simple neural network - Dataset - seasons - matches - each match with several attributes (home-away, toss-win, toss-decision, final result).
+
+
+
+\section{Conclusion}
+
+In the end, the program predicts a winner between the two teams and then compares the prediction of y array by perceptron with the actual results of the test season and hence gives the prediction accuracy. 
+
+
+\begin{acks}
+
+  The author would like to thank Dr. Geoffrey Fox and Dr. Gregor von Laszewski for their
+  support and suggestions to write this paper.
+  The author would also like to thank all the TAs of ENGR-E-222 for their constant guidance.
+
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
+Garg, Manas. Kaggle - Indian Premier League (Cricket). matches.csv, www.kaggle.com/manasgarg/ipl/data.
+
+Scikit Learn. http://scikit-learn.org/stable/modules/generated/sklearn.linearmodel.Perceptron.html
+
